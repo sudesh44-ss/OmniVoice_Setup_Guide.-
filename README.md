@@ -1,17 +1,24 @@
-# OmniVoice Offline Installation Guide (Windows)
+# 🎙️ OmniVoice Offline Installation Guide (Windows)
 
-## System
-
-* CPU: Intel Core i3-9100
-* RAM: 12 GB
-* Storage: SSD
-* OS: Windows 11
+> Complete step-by-step guide for installing and running OmniVoice locally on Windows.
 
 ---
 
-# Step 1: Clone Repository
+# 🖥️ System Requirements
 
-Open Command Prompt:
+| Component | Specification                          |
+| --------- | -------------------------------------- |
+| CPU       | Intel Core i3-9100 or better           |
+| RAM       | 12 GB+                                 |
+| Storage   | SSD Recommended                        |
+| OS        | Windows 10/11                          |
+| Internet  | Required for first-time model download |
+
+---
+
+# 📥 Step 1: Clone the Repository
+
+Open **Command Prompt** and run:
 
 ```cmd
 cd C:\Windows\System32
@@ -19,15 +26,19 @@ git clone https://github.com/k2-fsa/OmniVoice.git
 cd OmniVoice
 ```
 
+✅ This downloads the OmniVoice source code to your PC.
+
 ---
 
-# Step 2: Create Virtual Environment
+# 🐍 Step 2: Create a Python Virtual Environment
+
+Create a virtual environment:
 
 ```cmd
 python -m venv venv
 ```
 
-Activate:
+Activate it:
 
 ```cmd
 venv\Scripts\activate
@@ -39,13 +50,13 @@ You should see:
 (venv) C:\Windows\System32\OmniVoice>
 ```
 
+✅ Virtual environment activated successfully.
+
 ---
 
-# Step 3: Install OmniVoice
+# 📦 Step 3: Install OmniVoice
 
-IMPORTANT:
-
-Do NOT run:
+⚠️ Do NOT run:
 
 ```cmd
 pip install -r requirements.txt
@@ -63,29 +74,29 @@ This repository uses:
 pyproject.toml
 ```
 
-instead of requirements.txt.
+instead of a traditional requirements.txt file.
 
-Install using:
+Install OmniVoice using:
 
 ```cmd
 pip install -e .
 ```
 
-Installation may take 15–45 minutes depending on internet speed.
+⏳ Installation time may vary between **15–45 minutes** depending on your internet speed.
 
 ---
 
-# Step 4: Install FFmpeg
+# 🎵 Step 4: Install FFmpeg
 
-Required for audio processing.
+FFmpeg is required for audio processing.
 
-Run:
+Install:
 
 ```cmd
 winget install Gyan.FFmpeg
 ```
 
-Accept agreement:
+Accept the agreement:
 
 ```text
 Y
@@ -99,18 +110,20 @@ ffmpeg -version
 
 If version information appears, FFmpeg is installed correctly.
 
+✅ Audio processing support enabled.
+
 ---
 
-# Step 5: Start OmniVoice
+# 🚀 Step 5: Launch OmniVoice
 
-Activate venv:
+Activate the environment:
 
 ```cmd
 cd C:\Windows\System32\OmniVoice
 venv\Scripts\activate
 ```
 
-Launch:
+Start OmniVoice:
 
 ```cmd
 python -m omnivoice.cli.demo
@@ -118,36 +131,38 @@ python -m omnivoice.cli.demo
 
 ---
 
-# Step 6: First Launch
+# 📥 Step 6: First-Time Model Download
 
-First launch downloads model files.
+When launched for the first time, OmniVoice downloads the model automatically.
 
-Approximate download:
+Approximate size:
 
 ```text
 3.27 GB
 ```
 
-CPU detected:
+Example:
 
 ```text
-device=cpu
+Loading model from k2-fsa/OmniVoice, device=cpu
 ```
 
-Download happens only once.
+✅ Download happens only once.
+
+Future launches will use the cached model.
 
 ---
 
-# Step 7: Open Web UI
+# 🌐 Step 7: Open the Web Interface
 
-When startup completes:
+After startup completes, you should see:
 
 ```text
 Running on local URL:
 http://0.0.0.0:7860
 ```
 
-Open browser:
+Open your browser and visit:
 
 ```text
 http://localhost:7860
@@ -159,24 +174,28 @@ or
 http://127.0.0.1:7860
 ```
 
+🎉 OmniVoice is now ready to use.
+
 ---
 
-# Daily Usage
+# 🔄 Daily Usage
 
-Activate:
+Every time you want to use OmniVoice:
+
+### Activate Environment
 
 ```cmd
 cd C:\Windows\System32\OmniVoice
 venv\Scripts\activate
 ```
 
-Start:
+### Start Server
 
 ```cmd
 python -m omnivoice.cli.demo
 ```
 
-Open:
+### Open Browser
 
 ```text
 http://localhost:7860
@@ -184,15 +203,15 @@ http://localhost:7860
 
 ---
 
-# One-Click Start
+# ⚡ One-Click Start
 
-Create file:
+Create:
 
 ```text
 Start_OmniVoice.bat
 ```
 
-Content:
+Paste:
 
 ```bat
 @echo off
@@ -202,11 +221,11 @@ start http://localhost:7860
 python -m omnivoice.cli.demo
 ```
 
-Double-click to start OmniVoice.
+🖱️ Double-click to launch OmniVoice instantly.
 
 ---
 
-# One-Click Stop
+# 🛑 One-Click Stop
 
 Create:
 
@@ -214,50 +233,87 @@ Create:
 Stop_OmniVoice.bat
 ```
 
-Content:
+Paste:
 
 ```bat
 @echo off
 taskkill /F /IM python.exe
 ```
 
-Double-click to stop OmniVoice.
+🖱️ Double-click to stop OmniVoice.
 
 ---
 
-# Notes
+# 📋 Important Notes
 
-* First startup downloads model.
-* Later startups use cached model.
-* No need to re-download.
-* Terminal window must remain open while OmniVoice is running.
-* Performance on i3-9100 CPU is slower than GPU.
-* Voice generation works locally after model download.
+✅ First launch downloads the model.
+
+✅ Future launches use the cached model.
+
+✅ No need to download the model again.
+
+✅ FFmpeg should be installed for best audio compatibility.
+
+✅ Works locally after setup.
+
+⚠️ Keep the terminal window open while OmniVoice is running.
+
+⚠️ CPU inference is slower than GPU inference.
 
 ---
 
-# Useful Commands
+# 🛠️ Troubleshooting Commands
 
-Check FFmpeg:
+### Check FFmpeg
 
 ```cmd
 ffmpeg -version
 ```
 
-Check current folder:
+### Check Current Folder
 
 ```cmd
 echo %cd%
 ```
 
-Check running Python:
+### Check Running Python Processes
 
 ```cmd
 tasklist | findstr python
 ```
 
-Check port:
+### Check OmniVoice Port
 
 ```cmd
 netstat -ano | findstr 7860
 ```
+
+### Verify Git Installation
+
+```cmd
+git --version
+```
+
+### Verify Python Installation
+
+```cmd
+python --version
+```
+
+---
+
+# 🎯 Quick Start Summary
+
+```cmd
+cd C:\Windows\System32\OmniVoice
+venv\Scripts\activate
+python -m omnivoice.cli.demo
+```
+
+Then open:
+
+```text
+http://localhost:7860
+```
+
+🎙️ Enjoy local voice cloning with OmniVoice!
